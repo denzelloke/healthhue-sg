@@ -1,67 +1,78 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Zap, Activity, Heart, TrendingUp } from "lucide-react";
 import heroProduct from "@/assets/hero-product.jpg";
 import SampleRequestForm from "./SampleRequestForm";
+import Navigation from "./Navigation";
+
+const benefits = [
+  { icon: Zap, title: "Simple to Use" },
+  { icon: Activity, title: "Track Your Diet" },
+  { icon: Heart, title: "Stay Healthy" },
+  { icon: TrendingUp, title: "Affordable & Convenient" },
+];
 
 const Hero = () => {
   const [formOpen, setFormOpen] = useState(false);
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-accent via-background to-background">
-      <div className="container mx-auto px-4 py-16 md:py-24">
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
-          {/* Text Content */}
-          <div className="space-y-8 text-center lg:text-left">
-            <div className="space-y-4">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
-                Track Your Blood Sugar{" "}
-                <span className="text-primary">— No Needles, No Hassle</span>
-              </h1>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0">
-                A simple adhesive patch that shows how food affects your blood sugar. Easier and more affordable than wearables or clinic visits.
-              </p>
-            </div>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button variant="hero" size="xl" className="group" onClick={() => setFormOpen(true)}>
+    <>
+      <Navigation />
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Blurred Background */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${heroProduct})` }}
+        >
+          <div className="absolute inset-0 backdrop-blur-2xl bg-black/60" />
+        </div>
+
+        {/* Content Overlay */}
+        <div className="relative z-10 container mx-auto px-4 py-32">
+          <div className="max-w-3xl mx-auto text-center space-y-8">
+            {/* Brand Name */}
+            <h1 className="text-5xl md:text-7xl font-extrabold text-white tracking-tight">
+              HealthHue
+            </h1>
+
+            {/* Headline */}
+            <p className="text-2xl md:text-3xl text-white/90 font-semibold">
+              Track Your Blood Sugar — No Needles, No Hassle
+            </p>
+
+            {/* CTA */}
+            <div className="pt-4">
+              <Button 
+                variant="hero" 
+                size="xl" 
+                className="group text-lg px-8" 
+                onClick={() => setFormOpen(true)}
+              >
                 Get Your Free Sample
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </div>
 
-            {/* Trust Badges */}
-            <div className="flex flex-wrap gap-6 justify-center lg:justify-start items-center pt-4">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                  <span className="text-primary font-bold text-xs">✓</span>
+            {/* Benefits - Icon Grid */}
+            <div className="pt-8 grid grid-cols-2 md:grid-cols-4 gap-6">
+              {benefits.map((benefit, index) => (
+                <div 
+                  key={index}
+                  className="flex flex-col items-center gap-3 text-white"
+                >
+                  <div className="w-12 h-12 rounded-lg bg-white/10 backdrop-blur-sm flex items-center justify-center">
+                    <benefit.icon className="w-6 h-6" />
+                  </div>
+                  <p className="text-sm font-medium">{benefit.title}</p>
                 </div>
-                <span className="font-medium">Clinically Validated</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                  <span className="text-primary font-bold text-xs">✓</span>
-                </div>
-                <span className="font-medium">FDA Registered</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Hero Image */}
-          <div className="relative">
-            <div className="relative rounded-2xl overflow-hidden shadow-glow">
-              <img 
-                src={heroProduct} 
-                alt="HealthHue adhesive patch on arm showing glucose monitoring"
-                className="w-full h-auto object-cover"
-              />
+              ))}
             </div>
           </div>
         </div>
-      </div>
-      
-      <SampleRequestForm open={formOpen} onOpenChange={setFormOpen} />
-    </section>
+
+        <SampleRequestForm open={formOpen} onOpenChange={setFormOpen} />
+      </section>
+    </>
   );
 };
 
