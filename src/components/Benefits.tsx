@@ -4,22 +4,18 @@ const benefits = [
   {
     icon: Zap,
     title: "Simple to Use",
-    description: "Just stick it on and go. No complicated setup, no daily finger pricks. Your patch does all the work.",
   },
   {
     icon: Activity,
     title: "Track Your Diet",
-    description: "See exactly how different foods impact your blood sugar. Make smarter eating choices backed by your own data.",
   },
   {
     icon: Heart,
     title: "Stay Healthy",
-    description: "Maintain stable glucose levels to feel energized, focused, and in control of your wellbeing every day.",
   },
   {
     icon: TrendingUp,
     title: "Affordable & Convenient",
-    description: "More cost-effective than wearables or clinic visits. Health monitoring that fits your lifestyle and budget.",
   },
 ];
 
@@ -36,17 +32,16 @@ const Benefits = () => {
           </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {benefits.map((benefit, index) => (
             <div 
               key={index}
-              className="bg-card rounded-xl p-6 shadow-soft hover:shadow-glow transition-all duration-300 hover:-translate-y-1"
+              className="flex items-center gap-4 bg-card rounded-xl p-6 shadow-soft hover:shadow-glow transition-all duration-300"
             >
-              <div className="w-12 h-12 rounded-lg bg-gradient-hero flex items-center justify-center mb-4">
+              <div className="w-12 h-12 rounded-lg bg-gradient-hero flex items-center justify-center flex-shrink-0">
                 <benefit.icon className="w-6 h-6 text-primary-foreground" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">{benefit.title}</h3>
-              <p className="text-muted-foreground">{benefit.description}</p>
+              <h3 className="text-lg font-semibold">{benefit.title}</h3>
             </div>
           ))}
         </div>

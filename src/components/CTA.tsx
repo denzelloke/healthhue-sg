@@ -1,7 +1,11 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import SampleRequestForm from "./SampleRequestForm";
 
 const CTA = () => {
+  const [formOpen, setFormOpen] = useState(false);
+
   return (
     <section className="py-20 bg-gradient-to-br from-primary/5 via-accent to-secondary/5">
       <div className="container mx-auto px-4">
@@ -10,9 +14,9 @@ const CTA = () => {
             Ready to Take Control of Your Health?
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground mb-8">
-            Try HealthHue risk-free. Get your free sample today and start making smarter health choices tomorrow.
+            Try HealthHue risk-free. Get your free sample today.
           </p>
-          <Button variant="hero" size="xl" className="group">
+          <Button variant="hero" size="xl" className="group" onClick={() => setFormOpen(true)}>
             Get Your Free Sample
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
           </Button>
@@ -39,6 +43,8 @@ const CTA = () => {
           </div>
         </div>
       </div>
+      
+      <SampleRequestForm open={formOpen} onOpenChange={setFormOpen} />
     </section>
   );
 };
