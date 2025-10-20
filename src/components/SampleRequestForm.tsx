@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const formSchema = z.object({
   email: z.string().trim().email({ message: "Invalid email address" }).max(255),
@@ -33,19 +34,35 @@ const SampleRequestForm = ({ open, onOpenChange }: SampleRequestFormProps) => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
     
-    // Simulate submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    console.log("Form submitted:", values);
-    
-    toast({
-      title: "Request received!",
-      description: "We'll send your free sample soon.",
-    });
-    
-    form.reset();
-    onOpenChange(false);
-    setIsSubmitting(false);
+    try {
+      const { error } = await supabase
+        .from('sample_requests')
+        .insert([
+          {
+            email: values.email,
+            address: values.address,
+          }
+        ]);
+
+      if (error) throw error;
+
+      toast({
+        title: "Request received!",
+        description: "We'll send your free sample soon.",
+      });
+      
+      form.reset();
+      onOpenChange(false);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast({
+        title: "Error",
+        description: "Failed to submit request. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
