@@ -2,7 +2,7 @@ import Hero from "@/components/Hero";
 import ProductOverview from "@/components/ProductOverview";
 import ValueProposition from "@/components/ValueProposition";
 import HowItWorksSection from "@/components/HowItWorksSection";
-import BeachheadTarget from "@/components/BeachheadTarget";
+import Pricing from "@/components/Pricing";
 
 const Index = () => {
   return (
@@ -11,7 +11,7 @@ const Index = () => {
       <ProductOverview />
       <ValueProposition />
       <HowItWorksSection />
-      <BeachheadTarget />
+      <Pricing />
     </div>
   );
 };
