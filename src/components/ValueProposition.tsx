@@ -1,4 +1,5 @@
 import { Beaker, Eye, Clock, Users } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const ValueProposition = () => {
   return (
@@ -17,7 +18,7 @@ const ValueProposition = () => {
               <p className="text-muted-foreground leading-relaxed">
                 We provide individuals, especially those in communities with{" "}
                 <span className="text-secondary font-semibold">limited access to advanced healthcare</span>, 
-                a simple and affordable way to detect their glucose levels without pain, needles, or complicated devices.
+                a simple and affordable way to detect glucose presence early without pain, needles, or complicated digital devices.
               </p>
               
               <div className="bg-accent/10 rounded-xl p-6 border border-primary/20">
@@ -59,10 +60,18 @@ const ValueProposition = () => {
                   <Users className="w-8 h-8 text-secondary flex-shrink-0" />
                   <div>
                     <h4 className="font-bold text-lg mb-2">Enabling discreet and convenient detection anytime, anywhere.</h4>
-                    <p className="text-muted-foreground">
+                    <p className="text-muted-foreground mb-4">
                       No more scheduling clinic visits or carrying bulky equipment. HealthHue fits seamlessly into your lifestyle, 
-                      providing continuous insights into your health wherever you go.
+                      providing early glucose detection wherever you go with a simple visual indicator.
                     </p>
+                    <div className="flex gap-3">
+                      <Button size="sm" className="bg-gradient-hero hover:opacity-90" onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })}>
+                        See How It Works
+                      </Button>
+                      <Button variant="outline" size="sm" onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}>
+                        Get Sample
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </div>

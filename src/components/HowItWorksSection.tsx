@@ -4,17 +4,17 @@ const steps = [
   {
     number: "01",
     title: "Apply the Patch",
-    description: "Simply apply the HealthHue patch to your arm. It's painless, comfortable, and stays in place all day."
+    description: "Simply apply the HealthHue patch to your skin. It's painless, comfortable, and discreet."
   },
   {
     number: "02",
-    title: "Track Your Levels",
-    description: "The patch continuously monitors your blood sugar levels and syncs the data to your phone in real-time."
+    title: "Visual Indicator Changes",
+    description: "The patch uses a colorimetric enzyme assay that changes color when glucose is detected in your interstitial fluid."
   },
   {
     number: "03",
-    title: "Optimize Your Diet",
-    description: "See how different foods affect your blood sugar and make informed decisions about your diet and lifestyle."
+    title: "Check the Results",
+    description: "Observe the visual color change to detect glucose presence early. No digital devices or apps required."
   }
 ];
 
@@ -28,7 +28,7 @@ const HowItWorksSection = () => {
               How It Works
             </h2>
             <p className="text-xl text-muted-foreground">
-              Three simple steps to better health monitoring
+              Three simple steps for early glucose detection
             </p>
           </div>
 

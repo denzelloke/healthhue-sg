@@ -4,12 +4,12 @@ import { useState } from "react";
 import SampleRequestForm from "./SampleRequestForm";
 
 const features = [
-  "Non-invasive glucose monitoring",
-  "Continuous tracking throughout the day",
-  "Real-time color-changing indicator",
+  "Non-invasive glucose detection",
+  "Visual color-changing indicator",
+  "Early glucose presence detection",
   "No needles or blood draws required",
   "Easy to apply and wear",
-  "Syncs with your smartphone"
+  "No digital devices or apps needed"
 ];
 
 const Pricing = () => {
@@ -17,7 +17,7 @@ const Pricing = () => {
 
   return (
     <>
-      <section className="py-20 bg-gradient-to-b from-background to-muted/30">
+      <section id="pricing" className="py-20 bg-gradient-to-b from-background to-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
@@ -25,7 +25,7 @@ const Pricing = () => {
                 Simple, <span className="text-primary">Affordable</span> Pricing
               </h2>
               <p className="text-lg text-muted-foreground">
-                Healthcare monitoring that everyone can afford
+                Early glucose detection that everyone can afford
               </p>
             </div>
 

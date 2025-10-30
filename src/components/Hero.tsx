@@ -10,17 +10,17 @@ const benefits = [
   { 
     icon: DollarSign, 
     title: "Affordable",
-    description: "Cost-effective blood sugar monitoring without expensive devices or frequent clinic visits."
+    description: "Cost-effective early glucose detection without expensive devices or frequent clinic visits."
   },
   { 
     icon: Clock, 
     title: "Convenient",
-    description: "Simply apply the patch and go about your day. No needles, no hassle, no interruptions."
+    description: "Simply apply the patch and check the visual indicator. No needles, no hassle, no digital devices."
   },
   { 
     icon: TrendingUp, 
-    title: "Diet Tracking",
-    description: "See how your meals affect your blood sugar in real-time and make informed dietary choices."
+    title: "Early Detection",
+    description: "Visual color-changing indicator helps you detect glucose presence early for better health decisions."
   },
 ];
 
