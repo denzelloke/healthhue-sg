@@ -1,35 +1,41 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, DollarSign, Clock, TrendingUp } from "lucide-react";
+import { ArrowRight, Lightbulb, MessageCircle, Zap } from "lucide-react";
 import heroProduct from "@/assets/hero-product.jpg";
 import SampleRequestForm from "./SampleRequestForm";
-import Navigation from "./Navigation";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { useNavigate } from "react-router-dom";
 
-const benefits = [
+const sectionLinks = [
   { 
-    icon: DollarSign, 
-    title: "Affordable",
-    description: "Cost-effective early glucose detection without expensive devices or frequent clinic visits."
+    icon: Lightbulb, 
+    title: "Why Us",
+    sectionId: "value-proposition"
   },
   { 
-    icon: Clock, 
-    title: "Convenient",
-    description: "Simply apply the patch and check the visual indicator. No needles, no hassle, no digital devices."
+    icon: MessageCircle, 
+    title: "User Stories",
+    sectionId: "user-stories"
   },
   { 
-    icon: TrendingUp, 
-    title: "Early Detection",
-    description: "Visual color-changing indicator helps you detect glucose presence early for better health decisions."
+    icon: Zap, 
+    title: "Get Started",
+    sectionId: "pricing"
   },
 ];
 
 const Hero = () => {
   const [formOpen, setFormOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <>
-      <Navigation />
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Blurred Background */}
         <div 
@@ -37,6 +43,31 @@ const Hero = () => {
           style={{ backgroundImage: `url(${heroProduct})` }}
         >
           <div className="absolute inset-0 backdrop-blur-md bg-black/60" />
+        </div>
+
+        {/* Top Navigation */}
+        <div className="absolute top-6 left-6 z-20 flex gap-3">
+          <Button 
+            variant="ghost" 
+            onClick={() => navigate('/')}
+            className="bg-white/20 backdrop-blur-md text-white hover:bg-white/30 hover:scale-105 transition-all border border-white/30"
+          >
+            HealthHue
+          </Button>
+          <Button 
+            variant="ghost" 
+            onClick={() => navigate('/how-it-works')}
+            className="bg-white/20 backdrop-blur-md text-white hover:bg-white/30 hover:scale-105 transition-all border border-white/30"
+          >
+            How It Works
+          </Button>
+          <Button 
+            variant="ghost" 
+            onClick={() => navigate('/about-us')}
+            className="bg-white/20 backdrop-blur-md text-white hover:bg-white/30 hover:scale-105 transition-all border border-white/30"
+          >
+            About Us
+          </Button>
         </div>
 
         {/* Content Overlay */}
@@ -49,7 +80,7 @@ const Hero = () => {
 
             {/* Headline */}
             <p className="text-2xl md:text-3xl text-white/90 font-semibold">
-              Health Made Visible
+              Needle-Free Glucose Monitoring
             </p>
 
             {/* CTA */}
@@ -65,30 +96,19 @@ const Hero = () => {
               </Button>
             </div>
 
-            {/* Benefits - Icon Grid */}
-            <div className="pt-8 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              {benefits.map((benefit, index) => (
-                <HoverCard key={index} openDelay={200}>
-                  <HoverCardTrigger asChild>
-                    <div className="flex flex-col items-center gap-4 text-white cursor-pointer transition-transform hover:scale-105">
-                      <div className="w-16 h-16 rounded-xl bg-white/10 backdrop-blur-sm flex items-center justify-center">
-                        <benefit.icon className="w-8 h-8" />
-                      </div>
-                      <p className="text-lg font-semibold">{benefit.title}</p>
-                    </div>
-                  </HoverCardTrigger>
-                  <HoverCardContent className="w-80 bg-card/95 backdrop-blur-sm">
-                    <div className="space-y-2">
-                      <h4 className="text-sm font-semibold flex items-center gap-2">
-                        <benefit.icon className="w-4 h-4 text-primary" />
-                        {benefit.title}
-                      </h4>
-                      <p className="text-sm text-muted-foreground">
-                        {benefit.description}
-                      </p>
-                    </div>
-                  </HoverCardContent>
-                </HoverCard>
+            {/* Section Navigation */}
+            <div className="pt-8 flex flex-col md:flex-row gap-4 justify-center items-center">
+              {sectionLinks.map((link, index) => (
+                <Button
+                  key={index}
+                  variant="outline"
+                  size="lg"
+                  onClick={() => scrollToSection(link.sectionId)}
+                  className="bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-white/20 hover:scale-105 transition-all min-w-[160px]"
+                >
+                  <link.icon className="w-4 h-4 mr-2" />
+                  {link.title}
+                </Button>
               ))}
             </div>
           </div>
