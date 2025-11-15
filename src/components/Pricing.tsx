@@ -22,7 +22,7 @@ const Pricing = () => {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                Simple, <span className="text-primary">Affordable</span> Pricing
+                Try <span className="text-primary">HealthHue</span> Today
               </h2>
               <p className="text-lg text-muted-foreground">
                 Early glucose detection that everyone can afford
@@ -36,12 +36,17 @@ const Pricing = () => {
                     <DollarSign className="w-6 h-6 text-primary-foreground" />
                   </div>
                 </div>
-                <h3 className="text-2xl font-bold mb-4">HealthHue Patch</h3>
+                <h3 className="text-2xl font-bold mb-4">HealthHue Patch Pack</h3>
                 <div className="flex items-center justify-center gap-2 mb-2">
-                  <span className="text-6xl font-bold text-primary">$1</span>
+                  <span className="text-6xl font-bold text-primary">$7</span>
                   <span className="text-2xl text-muted-foreground">USD</span>
                 </div>
-                <p className="text-muted-foreground">per patch</p>
+                <p className="text-muted-foreground mb-4">for a pack of 7</p>
+                
+                <div className="bg-primary/10 border-2 border-primary/30 rounded-lg p-4 mb-6">
+                  <p className="text-lg font-semibold text-primary mb-1">Free Sample Available!</p>
+                  <p className="text-sm text-muted-foreground">Try HealthHue risk-free before you buy</p>
+                </div>
               </div>
 
               <div className="space-y-4 mb-8">
@@ -63,9 +68,6 @@ const Pricing = () => {
                 >
                   Get Your Free Sample
                 </Button>
-                <p className="text-sm text-muted-foreground mt-4">
-                  Try HealthHue risk-free with our free sample program
-                </p>
               </div>
             </div>
           </div>
