@@ -1,6 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { User } from "lucide-react";
+import ImagePlaceholder from "./ImagePlaceholder";
+import DecorativeShapes from "./DecorativeShapes";
+import WaveDivider from "./WaveDivider";
 
 const testimonials = [
   {
@@ -25,40 +28,44 @@ const testimonials = [
 
 const UserStories = () => {
   return (
-    <section id="user-stories" className="py-20 bg-gradient-to-b from-muted/30 to-background">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+    <>
+      <WaveDivider />
+      <section id="user-stories" className="relative py-20 bg-gradient-to-b from-secondary/5 via-background to-primary/5 overflow-hidden">
+        <DecorativeShapes variant="dots" />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
               Real People, Real Results
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Join thousands of health-conscious young adults taking control of their glucose levels
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                <CardContent className="p-6">
-                  <div className="flex flex-col items-center text-center">
-                    <Avatar className={`w-16 h-16 mb-4 ${testimonial.avatarColor}`}>
-                      <AvatarFallback className={testimonial.avatarColor}>
-                        <User className="w-8 h-8 text-primary-foreground" />
-                      </AvatarFallback>
-                    </Avatar>
+              <Card key={index} className="hover:shadow-glow transition-all duration-300 bg-card/80 backdrop-blur-sm">
+                <CardContent className="pt-8 pb-6">
+                  <div className="flex flex-col items-center text-center space-y-4">
+                    {/* Image Placeholder for Profile Photo */}
+                    <ImagePlaceholder 
+                      label={`TESTIMONIAL-PHOTO-${index + 1}`} 
+                      aspectRatio="square"
+                      className="w-24 h-24 rounded-full"
+                    />
                     
-                    <div className="mb-6">
-                      <svg className="w-8 h-8 text-primary/20 mb-2 mx-auto" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                      </svg>
-                      <p className="text-base italic leading-relaxed mb-4">
-                        "{testimonial.quote}"
+                    {/* Quote */}
+                    <div className="relative">
+                      <span className="text-4xl text-primary/20 absolute -top-2 -left-2">"</span>
+                      <p className="text-muted-foreground italic px-4">
+                        {testimonial.quote}
                       </p>
+                      <span className="text-4xl text-primary/20 absolute -bottom-6 -right-2">"</span>
                     </div>
                     
-                    <div>
-                      <p className="font-semibold text-foreground">{testimonial.name}</p>
+                    {/* Attribution */}
+                    <div className="pt-4 border-t border-border/50 w-full">
+                      <p className="font-bold text-foreground">{testimonial.name}</p>
                       <p className="text-sm text-muted-foreground">{testimonial.role}</p>
                     </div>
                   </div>
@@ -67,8 +74,9 @@ const UserStories = () => {
             ))}
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <WaveDivider flip />
+    </>
   );
 };
 
