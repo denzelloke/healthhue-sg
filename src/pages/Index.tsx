@@ -1,7 +1,6 @@
 import Hero from "@/components/Hero";
 import ProductOverview from "@/components/ProductOverview";
 import ValueProposition from "@/components/ValueProposition";
-import HowItWorksSection from "@/components/HowItWorksSection";
 import Pricing from "@/components/Pricing";
 
 const Index = () => {
@@ -12,7 +11,6 @@ const Index = () => {
       <div id="value-proposition">
         <ValueProposition />
       </div>
-      <HowItWorksSection />
       <div id="pricing">
         <Pricing />
       </div>
