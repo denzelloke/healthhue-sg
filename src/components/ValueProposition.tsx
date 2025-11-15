@@ -1,5 +1,8 @@
 import { Shield, Zap, DollarSign } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import ImagePlaceholder from "./ImagePlaceholder";
+import DecorativeShapes from "./DecorativeShapes";
+import WaveDivider from "./WaveDivider";
 
 const ValueProposition = () => {
   const stats = [
@@ -39,24 +42,32 @@ const ValueProposition = () => {
   ];
 
   return (
-    <section id="value-proposition" className="py-20">
-      {/* Section Header */}
-      <div className="container mx-auto px-4 mb-12">
-        <h2 className="text-4xl md:text-5xl font-bold text-center">
-          Why HealthHue
-        </h2>
-      </div>
+    <>
+      <WaveDivider />
+      <section id="value-proposition" className="relative py-20 overflow-hidden">
+        <DecorativeShapes variant="dots" />
+        {/* Section Header */}
+        <div className="container mx-auto px-4 mb-12 relative z-10">
+          <h2 className="text-4xl md:text-5xl font-bold text-center">
+            Why HealthHue
+          </h2>
+        </div>
 
-      {/* Part 1: The Wake-Up Call */}
-      <div className="bg-muted/30 py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <h3 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              The Silent Health Crisis Affecting Your Generation
-            </h3>
+        {/* Part 1: The Wake-Up Call */}
+        <div className="relative bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5 py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <h3 className="text-3xl md:text-4xl font-bold text-center mb-8">
+                The Silent Health Crisis Affecting Your Generation
+              </h3>
 
-            {/* Stats Grid */}
-            <div className="grid md:grid-cols-3 gap-6 mb-8">
+              {/* Stats Infographic Placeholder */}
+              <div className="mb-12">
+                <ImagePlaceholder label="STATS-INFOGRAPHIC" aspectRatio="video" />
+              </div>
+
+              {/* Stats Grid */}
+              <div className="grid md:grid-cols-3 gap-6 mb-8">
               {stats.map((stat, index) => (
                 <Card key={index} className="text-center hover:shadow-glow transition-all duration-300">
                   <CardContent className="pt-8 pb-6">
@@ -87,12 +98,18 @@ const ValueProposition = () => {
       </div>
 
       {/* Part 2: How HealthHue Helps */}
-      <div className="bg-background py-16">
-        <div className="container mx-auto px-4">
+      <div className="relative bg-gradient-to-br from-background via-muted/10 to-background py-16">
+        <DecorativeShapes variant="grid" />
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
               A Smarter Way to Monitor Your Health
             </h2>
+
+            {/* Comparison Visual */}
+            <div className="mb-12">
+              <ImagePlaceholder label="COMPARISON-VISUAL" aspectRatio="video" />
+            </div>
 
             {/* Benefits Grid */}
             <div className="grid md:grid-cols-3 gap-8">
@@ -115,7 +132,9 @@ const ValueProposition = () => {
           </div>
         </div>
       </div>
+      <WaveDivider flip />
     </section>
+    </>
   );
 };
 
