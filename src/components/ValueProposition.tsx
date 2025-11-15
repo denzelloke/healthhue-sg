@@ -1,80 +1,109 @@
-import { Beaker, Eye, Clock, Users } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Shield, Zap, DollarSign } from "lucide-react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 const ValueProposition = () => {
+  const stats = [
+    {
+      number: "1 in 3",
+      description: "Young adults aged 18-34 have prediabetes, and 90% don't know it",
+      source: "Centers for Disease Control and Prevention"
+    },
+    {
+      number: "200%",
+      description: "Increase in Type 2 diabetes diagnoses among people under 30 in the past two decades",
+      source: "American Diabetes Association"
+    },
+    {
+      number: "Age 19",
+      description: "Average age when lifestyle habits that lead to diabetes begin to take root",
+      source: "Journal of Preventive Medicine"
+    }
+  ];
+
+  const benefits = [
+    {
+      icon: Shield,
+      title: "No Needles. No Pain. No Hassle.",
+      description: "Traditional glucose testing requires finger pricks multiple times a day—painful, inconvenient, and easy to skip. HealthHue uses a painless adhesive patch that reads your glucose levels through your skin. Simply apply it and forget about it. No blood draws, no lancets, no daily discomfort."
+    },
+    {
+      icon: Zap,
+      title: "Wear It. Live It. Monitor Effortlessly.",
+      description: "Unlike bulky monitoring devices that interrupt your day, HealthHue is discreet and invisible under clothing. Stick it on your arm or abdomen in the morning, and go about your classes, workouts, or social life. The visual color indicator shows your glucose status at a glance—no apps, no charging, no connectivity required."
+    },
+    {
+      icon: DollarSign,
+      title: "Health Monitoring Without the Premium Price Tag",
+      description: "Continuous glucose monitors can cost hundreds of dollars monthly. Premium smartwatches with health tracking? Even more. HealthHue delivers accurate glucose detection at just $1 per patch—making daily monitoring accessible to students, young professionals, and anyone on a budget. Your health shouldn't come with a luxury price tag."
+    }
+  ];
+
   return (
-    <section className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="text-primary">Value</span>{" "}
-              <span className="text-secondary">Proposition</span>
+    <section id="value-proposition" className="py-20">
+      {/* Part 1: The Wake-Up Call */}
+      <div className="bg-muted/30 py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+              The Silent Health Crisis Affecting Your Generation
             </h2>
-          </div>
 
-          <div className="bg-card rounded-2xl p-8 md:p-12 shadow-soft border border-border/50">
-            <div className="space-y-6 text-lg">
-              <p className="text-muted-foreground leading-relaxed">
-                We provide individuals, especially those in communities with{" "}
-                <span className="text-secondary font-semibold">limited access to advanced healthcare</span>, 
-                a simple and affordable way to detect glucose presence early without pain, needles, or complicated digital devices.
-              </p>
-              
-              <div className="bg-accent/10 rounded-xl p-6 border border-primary/20">
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-hero flex items-center justify-center flex-shrink-0">
-                    <Beaker className="w-5 h-5 text-primary-foreground" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold mb-2">How It Works</h3>
-                  </div>
-                </div>
-                <p className="text-muted-foreground leading-relaxed">
-                  Our <span className="font-semibold text-foreground">non-invasive wearable patch</span> is coated with 
-                  glucose oxidase, a specialized enzyme. It uses a{" "}
-                  <span className="font-semibold text-foreground">colorimetric enzyme assay</span> to produce a visible 
-                  color change that reflects the presence of glucose in your interstitial fluid.
-                </p>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-4 pt-4">
-                <div className="flex items-start gap-3">
-                  <Eye className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                  <div>
-                    <h4 className="font-semibold mb-1">Discreet Detection</h4>
-                    <p className="text-sm text-muted-foreground">Visual feedback you can check at a glance</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Clock className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                  <div>
-                    <h4 className="font-semibold mb-1">Anytime, Anywhere</h4>
-                    <p className="text-sm text-muted-foreground">Convenient monitoring throughout your day</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-secondary/10 rounded-xl p-6 border border-secondary/20 mt-6">
-                <div className="flex items-start gap-4">
-                  <Users className="w-8 h-8 text-secondary flex-shrink-0" />
-                  <div>
-                    <h4 className="font-bold text-lg mb-2">Enabling discreet and convenient detection anytime, anywhere.</h4>
-                    <p className="text-muted-foreground mb-4">
-                      No more scheduling clinic visits or carrying bulky equipment. HealthHue fits seamlessly into your lifestyle, 
-                      providing early glucose detection wherever you go with a simple visual indicator.
-                    </p>
-                    <div className="flex gap-3">
-                      <Button size="sm" className="bg-gradient-hero hover:opacity-90" onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })}>
-                        See How It Works
-                      </Button>
-                      <Button variant="outline" size="sm" onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}>
-                        Get Sample
-                      </Button>
+            {/* Stats Grid */}
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
+              {stats.map((stat, index) => (
+                <Card key={index} className="text-center hover:shadow-glow transition-all duration-300">
+                  <CardContent className="pt-8 pb-6">
+                    <div className="text-5xl md:text-6xl font-bold text-primary mb-4">
+                      {stat.number}
                     </div>
-                  </div>
-                </div>
-              </div>
+                    <p className="text-base mb-3 text-foreground leading-relaxed">
+                      {stat.description}
+                    </p>
+                    <p className="text-xs text-muted-foreground italic">
+                      {stat.source}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            {/* Supporting Text */}
+            <div className="max-w-3xl mx-auto text-center">
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Your daily coffee runs, late-night study snacks, and busy lifestyle could be silently 
+                affecting your glucose levels. By the time symptoms appear, damage may already be done. 
+                <span className="font-semibold text-foreground"> Early monitoring is your first line of defense.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Part 2: How HealthHue Helps */}
+      <div className="bg-background py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+              A Smarter Way to Monitor Your Health
+            </h2>
+
+            {/* Benefits Grid */}
+            <div className="grid md:grid-cols-3 gap-8">
+              {benefits.map((benefit, index) => (
+                <Card key={index} className="hover:shadow-glow transition-all duration-300">
+                  <CardHeader>
+                    <div className="w-12 h-12 rounded-lg bg-gradient-hero flex items-center justify-center mb-4">
+                      <benefit.icon className="w-6 h-6 text-primary-foreground" />
+                    </div>
+                    <CardTitle className="text-xl mb-3">{benefit.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-base leading-relaxed">
+                      {benefit.description}
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
         </div>
