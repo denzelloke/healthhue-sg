@@ -40,13 +40,20 @@ const ValueProposition = () => {
 
   return (
     <section id="value-proposition" className="py-20">
+      {/* Section Header */}
+      <div className="container mx-auto px-4 mb-12">
+        <h2 className="text-4xl md:text-5xl font-bold text-center">
+          Why HealthHue
+        </h2>
+      </div>
+
       {/* Part 1: The Wake-Up Call */}
       <div className="bg-muted/30 py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            <h3 className="text-3xl md:text-4xl font-bold text-center mb-12">
               The Silent Health Crisis Affecting Your Generation
-            </h2>
+            </h3>
 
             {/* Stats Grid */}
             <div className="grid md:grid-cols-3 gap-6 mb-8">
