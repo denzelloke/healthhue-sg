@@ -47,31 +47,6 @@ const Hero = () => {
           <div className="absolute inset-0 bg-gradient-to-br from-primary/40 via-primary/20 to-secondary/30" />
         </div>
 
-        {/* Top Navigation */}
-        <div className="absolute top-6 left-6 z-20 flex gap-3">
-          <Button 
-            variant="ghost" 
-            onClick={() => navigate('/')}
-            className="bg-white/20 backdrop-blur-md text-white hover:bg-white/30 hover:scale-105 transition-all border border-white/30"
-          >
-            HealthHue
-          </Button>
-          <Button 
-            variant="ghost" 
-            onClick={() => navigate('/how-it-works')}
-            className="bg-white/20 backdrop-blur-md text-white hover:bg-white/30 hover:scale-105 transition-all border border-white/30"
-          >
-            How It Works
-          </Button>
-          <Button 
-            variant="ghost" 
-            onClick={() => navigate('/about-us')}
-            className="bg-white/20 backdrop-blur-md text-white hover:bg-white/30 hover:scale-105 transition-all border border-white/30"
-          >
-            About Us
-          </Button>
-        </div>
-
         {/* Content Overlay */}
         <div className="relative z-10 container mx-auto px-4 py-32">
           <div className="max-w-3xl mx-auto text-center space-y-8">

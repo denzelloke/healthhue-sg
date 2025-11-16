@@ -4,6 +4,7 @@ import { User } from "lucide-react";
 import ImagePlaceholder from "./ImagePlaceholder";
 import DecorativeShapes from "./DecorativeShapes";
 import WaveDivider from "./WaveDivider";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 const testimonials = [
   {
@@ -27,13 +28,22 @@ const testimonials = [
 ];
 
 const UserStories = () => {
+  const { ref: headerRef, isVisible: headerVisible } = useIntersectionObserver();
+  const { ref: cardsRef, isVisible: cardsVisible } = useIntersectionObserver();
+
   return (
     <>
       <WaveDivider />
       <section id="user-stories" className="relative py-20 bg-gradient-to-b from-secondary/5 via-background to-primary/5 overflow-hidden">
         <DecorativeShapes variant="dots" />
         <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
+          <div 
+            ref={headerRef}
+            className={`
+              text-center mb-16 transition-all duration-700
+              ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
+            `}
+          >
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
               Real People, Real Results
             </h2>
@@ -42,9 +52,19 @@ const UserStories = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div ref={cardsRef} className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="hover:shadow-glow transition-all duration-300 bg-card/80 backdrop-blur-sm">
+              <Card 
+                key={index} 
+                className={`
+                  hover:shadow-glow hover:scale-105 hover:-translate-y-1 transition-all duration-300 bg-card/80 backdrop-blur-sm
+                  ${cardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
+                `}
+                style={{ 
+                  transitionDelay: `${index * 200}ms`,
+                  transition: 'all 0.5s ease-out'
+                }}
+              >
                 <CardContent className="pt-8 pb-6">
                   <div className="flex flex-col items-center text-center space-y-4">
                     {/* Image Placeholder for Profile Photo */}
