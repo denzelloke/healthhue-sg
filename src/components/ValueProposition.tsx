@@ -73,11 +73,6 @@ const ValueProposition = () => {
                 The Silent Health Crisis Affecting Your Generation
               </h3>
 
-              {/* Stats Infographic Placeholder */}
-              <div className="mb-12">
-                <ImagePlaceholder label="STATS-INFOGRAPHIC" aspectRatio="video" />
-              </div>
-
               {/* Stats Grid */}
               <div ref={statsRef} className="grid md:grid-cols-3 gap-6 mb-8">
               {stats.map((stat, index) => (
@@ -106,11 +101,6 @@ const ValueProposition = () => {
               A Smarter Way to Monitor Your Health
             </h2>
 
-            {/* Comparison Visual */}
-            <div className="mb-12">
-              <ImagePlaceholder label="COMPARISON-VISUAL" aspectRatio="video" />
-            </div>
-
             {/* Benefits Grid */}
             <div ref={benefitsRef} className="grid md:grid-cols-3 gap-8">
               {benefits.map((benefit, index) => (
@@ -126,6 +116,11 @@ const ValueProposition = () => {
                   }}
                 >
                   <CardHeader>
+                    <ImagePlaceholder 
+                      label={`BENEFIT-${index + 1}-IMAGE`} 
+                      aspectRatio="video" 
+                      className="mb-4"
+                    />
                     <div className="w-12 h-12 rounded-lg bg-gradient-hero flex items-center justify-center mb-4">
                       <benefit.icon className="w-6 h-6 text-primary-foreground" />
                     </div>
