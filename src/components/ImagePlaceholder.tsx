@@ -17,15 +17,15 @@ const ImagePlaceholder = ({ label, className = "", aspectRatio = "video" }: Imag
     <div 
       className={`
         ${aspectClasses[aspectRatio]}
-        w-full rounded-lg border-2 border-dashed border-primary/30 
-        bg-gradient-to-br from-primary/5 to-primary/10
+        w-full rounded-lg border-2 border-dashed border-muted-foreground/30 
+        bg-muted/50
         flex flex-col items-center justify-center gap-3
-        transition-all hover:border-primary/50 hover:shadow-lg
+        transition-all hover:border-muted-foreground/50
         ${className}
       `}
     >
-      <ImageIcon className="w-12 h-12 text-primary/40" />
-      <span className="text-sm md:text-base font-mono text-primary/60 px-4 text-center">
+      <ImageIcon className="w-12 h-12 text-muted-foreground/40" />
+      <span className="text-sm md:text-base font-mono text-muted-foreground/60 px-4 text-center">
         [{label}]
       </span>
     </div>

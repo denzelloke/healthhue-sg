@@ -3,8 +3,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import ImagePlaceholder from "./ImagePlaceholder";
 import DecorativeShapes from "./DecorativeShapes";
 import WaveDivider from "./WaveDivider";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import StatCard from "./StatCard";
 
 const ValueProposition = () => {
+  const { ref: headerRef, isVisible: headerVisible } = useIntersectionObserver();
+  const { ref: statsRef, isVisible: statsVisible } = useIntersectionObserver();
+  const { ref: benefitsRef, isVisible: benefitsVisible } = useIntersectionObserver();
+
   const stats = [
     {
       number: "1 in 3",
@@ -47,7 +53,13 @@ const ValueProposition = () => {
       <section id="value-proposition" className="relative py-20 overflow-hidden">
         <DecorativeShapes variant="dots" />
         {/* Section Header */}
-        <div className="container mx-auto px-4 mb-12 relative z-10">
+        <div 
+          ref={headerRef}
+          className={`
+            container mx-auto px-4 mb-12 relative z-10 transition-all duration-700
+            ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
+          `}
+        >
           <h2 className="text-4xl md:text-5xl font-bold text-center">
             Why HealthHue
           </h2>
@@ -67,21 +79,9 @@ const ValueProposition = () => {
               </div>
 
               {/* Stats Grid */}
-              <div className="grid md:grid-cols-3 gap-6 mb-8">
+              <div ref={statsRef} className="grid md:grid-cols-3 gap-6 mb-8">
               {stats.map((stat, index) => (
-                <Card key={index} className="text-center hover:shadow-glow transition-all duration-300">
-                  <CardContent className="pt-8 pb-6">
-                    <div className="text-5xl md:text-6xl font-bold text-primary mb-4">
-                      {stat.number}
-                    </div>
-                    <p className="text-base mb-3 text-foreground leading-relaxed">
-                      {stat.description}
-                    </p>
-                    <p className="text-xs text-muted-foreground italic">
-                      {stat.source}
-                    </p>
-                  </CardContent>
-                </Card>
+                <StatCard key={index} stat={stat} isVisible={statsVisible} index={index} />
               ))}
             </div>
 
@@ -112,9 +112,19 @@ const ValueProposition = () => {
             </div>
 
             {/* Benefits Grid */}
-            <div className="grid md:grid-cols-3 gap-8">
+            <div ref={benefitsRef} className="grid md:grid-cols-3 gap-8">
               {benefits.map((benefit, index) => (
-                <Card key={index} className="hover:shadow-glow transition-all duration-300">
+                <Card 
+                  key={index} 
+                  className={`
+                    hover:shadow-glow hover:scale-105 hover:-translate-y-1 transition-all duration-300
+                    ${benefitsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
+                  `}
+                  style={{ 
+                    transitionDelay: `${index * 150}ms`,
+                    transition: 'all 0.5s ease-out'
+                  }}
+                >
                   <CardHeader>
                     <div className="w-12 h-12 rounded-lg bg-gradient-hero flex items-center justify-center mb-4">
                       <benefit.icon className="w-6 h-6 text-primary-foreground" />
