@@ -37,9 +37,9 @@ const Hero = () => {
   return (
     <>
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Blurred Background */}
+        {/* Blurred Background - parallax disabled on mobile */}
         <div 
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-center md:bg-fixed"
           style={{ backgroundImage: `url(${heroProduct})` }}
         >
           <div className="absolute inset-0 backdrop-blur-md bg-black/60" />
