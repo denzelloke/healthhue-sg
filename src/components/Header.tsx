@@ -26,19 +26,21 @@ const Header = () => {
           <div className="md:hidden">
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" className="min-w-[44px] min-h-[44px]">
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="left">
-                <div className="flex flex-col gap-4 mt-8">
+              <SheetContent side="left" className="w-[280px] backdrop-blur-xl bg-background/95">
+                <div className="flex flex-col gap-6 mt-12">
                   {navLinks.map((link) => (
                     <Link
                       key={link.path}
                       to={link.path}
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`text-lg font-medium transition-colors hover:text-primary ${
-                        isActive(link.path) ? "text-primary" : "text-foreground"
+                      className={`text-lg font-medium transition-all active:scale-95 py-2 px-4 rounded-lg min-h-[44px] flex items-center ${
+                        isActive(link.path) 
+                          ? "text-primary bg-primary/10" 
+                          : "text-foreground hover:bg-muted"
                       }`}
                     >
                       {link.label}
@@ -78,7 +80,7 @@ const Header = () => {
           <Button
             variant="hero"
             onClick={() => setFormOpen(true)}
-            className="ml-auto"
+            className="ml-auto min-h-[44px]"
             size="sm"
           >
             <span className="hidden sm:inline">Try HealthHue Free</span>
