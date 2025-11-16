@@ -1,10 +1,12 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { User } from "lucide-react";
+import { User, ChevronLeft, ChevronRight } from "lucide-react";
 import ImagePlaceholder from "./ImagePlaceholder";
 import DecorativeShapes from "./DecorativeShapes";
 import WaveDivider from "./WaveDivider";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 const testimonials = [
   {
@@ -30,6 +32,15 @@ const testimonials = [
 const UserStories = () => {
   const { ref: headerRef, isVisible: headerVisible } = useIntersectionObserver();
   const { ref: cardsRef, isVisible: cardsVisible } = useIntersectionObserver();
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
 
   return (
     <>
@@ -52,46 +63,81 @@ const UserStories = () => {
             </p>
           </div>
 
-          <div ref={cardsRef} className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {testimonials.map((testimonial, index) => (
-              <Card 
-                key={index} 
-                className={`
-                  hover:shadow-glow hover:scale-105 hover:-translate-y-1 transition-all duration-300 bg-card/80 backdrop-blur-sm
-                  ${cardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
-                `}
-                style={{ 
-                  transitionDelay: `${index * 200}ms`,
-                  transition: 'all 0.5s ease-out'
-                }}
+          <div className="relative max-w-4xl mx-auto">
+            <div ref={cardsRef} className="overflow-hidden">
+              <div 
+                className="flex transition-transform duration-500 ease-out"
+                style={{ transform: `translateX(-${currentIndex * 100}%)` }}
               >
-                <CardContent className="pt-8 pb-6">
-                  <div className="flex flex-col items-center text-center space-y-4">
-                    {/* Image Placeholder for Profile Photo */}
-                    <ImagePlaceholder 
-                      label={`TESTIMONIAL-PHOTO-${index + 1}`} 
-                      aspectRatio="square"
-                      className="w-24 h-24 rounded-full"
-                    />
-                    
-                    {/* Quote */}
-                    <div className="relative">
-                      <span className="text-4xl text-primary/20 absolute -top-2 -left-2">"</span>
-                      <p className="text-muted-foreground italic px-4">
-                        {testimonial.quote}
-                      </p>
-                      <span className="text-4xl text-primary/20 absolute -bottom-6 -right-2">"</span>
-                    </div>
-                    
-                    {/* Attribution */}
-                    <div className="pt-4 border-t border-border/50 w-full">
-                      <p className="font-bold text-foreground">{testimonial.name}</p>
-                      <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                    </div>
+                {testimonials.map((testimonial, index) => (
+                  <div key={index} className="w-full flex-shrink-0 px-4">
+                    <Card 
+                      className={`
+                        bg-card/80 backdrop-blur-sm transition-all duration-300
+                        ${cardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
+                      `}
+                    >
+                      <CardContent className="pt-8 pb-6">
+                        <div className="flex flex-col items-center text-center space-y-4">
+                          {/* Image Placeholder for Profile Photo */}
+                          <ImagePlaceholder 
+                            label={`TESTIMONIAL-PHOTO-${index + 1}`} 
+                            aspectRatio="square"
+                            className="w-24 h-24 rounded-full"
+                          />
+                          
+                          {/* Quote */}
+                          <div className="relative">
+                            <span className="text-4xl text-primary/20 absolute -top-2 -left-2">"</span>
+                            <p className="text-muted-foreground italic px-4">
+                              {testimonial.quote}
+                            </p>
+                            <span className="text-4xl text-primary/20 absolute -bottom-6 -right-2">"</span>
+                          </div>
+                          
+                          {/* Attribution */}
+                          <div className="pt-4 border-t border-border/50 w-full">
+                            <p className="font-bold text-foreground">{testimonial.name}</p>
+                            <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
                   </div>
-                </CardContent>
-              </Card>
-            ))}
+                ))}
+              </div>
+            </div>
+
+            {/* Navigation Buttons */}
+            <Button
+              variant="outline"
+              size="icon"
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4"
+              onClick={prevSlide}
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </Button>
+            <Button
+              variant="outline"
+              size="icon"
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4"
+              onClick={nextSlide}
+            >
+              <ChevronRight className="w-4 h-4" />
+            </Button>
+
+            {/* Dots Indicator */}
+            <div className="flex justify-center gap-2 mt-8">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  className={`w-2 h-2 rounded-full transition-all ${
+                    index === currentIndex ? "bg-primary w-8" : "bg-muted-foreground/30"
+                  }`}
+                  onClick={() => setCurrentIndex(index)}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
