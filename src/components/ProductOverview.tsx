@@ -2,6 +2,7 @@ import { Activity, Shield, TrendingUp, Zap } from "lucide-react";
 import ImagePlaceholder from "./ImagePlaceholder";
 import DecorativeShapes from "./DecorativeShapes";
 import WaveDivider from "./WaveDivider";
+import heroProductHands from "@/assets/hero-product-hands.png";
 
 const features = [
   {
@@ -50,7 +51,11 @@ const ProductOverview = () => {
               </p>
             </div>
             <div>
-              <ImagePlaceholder label="PRODUCT-HERO-IMAGE" aspectRatio="square" />
+              <img 
+                src={heroProductHands} 
+                alt="HealthHue patches on diverse hands" 
+                className="w-full aspect-square object-cover rounded-lg shadow-elegant"
+              />
             </div>
           </div>
 
