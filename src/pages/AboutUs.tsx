@@ -6,6 +6,7 @@ import SampleRequestForm from "@/components/SampleRequestForm";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 import DecorativeShapes from "@/components/DecorativeShapes";
 import WaveDivider from "@/components/WaveDivider";
+import teamPhoto from "@/assets/team-photo.png";
 
 const AboutUs = () => {
   const [formOpen, setFormOpen] = useState(false);
@@ -82,7 +83,11 @@ const AboutUs = () => {
               </div>
             </div>
             <div className="flex items-center justify-center">
-              <ImagePlaceholder label="TEAM-PHOTO" aspectRatio="square" />
+              <img 
+                src={teamPhoto} 
+                alt="HealthHue team in the laboratory" 
+                className="w-full aspect-square object-cover rounded-lg shadow-elegant"
+              />
             </div>
           </div>
         </div>
