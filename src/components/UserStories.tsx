@@ -7,13 +7,15 @@ import WaveDivider from "./WaveDivider";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import testimonial1 from "@/assets/testimonial-1.jpg";
 
 const testimonials = [
   {
-    quote: "I used to ignore the warning signs—constant thirst, energy crashes after lunch. HealthHue showed me my glucose was spiking every afternoon. Now I've adjusted my diet and actually feel the difference. No painful finger pricks, just a simple patch that gave me the wake-up call I needed.",
-    name: "Sarah Chen, 23",
-    role: "Marketing Intern",
-    avatarColor: "bg-primary"
+    quote: "I've been diabetic for 15 years and those damn lancets were the bane of my existence. Pricking my fingers 4-5 times a day—my fingertips were constantly sore and calloused. When my son showed me HealthHue, I thought it was too good to be true. But it works! No more painful pricks, no more blood spots on my keyboard. Just slap on a patch and check the color. It's about time someone made glucose monitoring this simple.",
+    name: "Denzel Loke, 43",
+    role: "Software Intern",
+    avatarColor: "bg-primary",
+    image: testimonial1
   },
   {
     quote: "My dad was diagnosed with Type 2 at 45—I wasn't going to wait that long to take control. Traditional glucose monitors felt like overkill for someone without diabetes, but HealthHue lets me track patterns without the medical device hassle. I recommend it to all my clients who are serious about their metabolic health.",
@@ -79,12 +81,20 @@ const UserStories = () => {
                     >
                       <CardContent className="pt-8 pb-6">
                         <div className="flex flex-col items-center text-center space-y-4">
-                          {/* Image Placeholder for Profile Photo */}
-                          <ImagePlaceholder 
-                            label={`TESTIMONIAL-PHOTO-${index + 1}`} 
-                            aspectRatio="square"
-                            className="w-24 h-24 rounded-full"
-                          />
+                          {/* Profile Photo */}
+                          {testimonial.image ? (
+                            <img 
+                              src={testimonial.image} 
+                              alt={testimonial.name}
+                              className="w-24 h-24 rounded-full object-cover"
+                            />
+                          ) : (
+                            <ImagePlaceholder 
+                              label={`TESTIMONIAL-PHOTO-${index + 1}`} 
+                              aspectRatio="square"
+                              className="w-24 h-24 rounded-full"
+                            />
+                          )}
                           
                           {/* Quote */}
                           <div className="relative">
