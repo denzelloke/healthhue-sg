@@ -43,8 +43,6 @@ const Hero = () => {
           style={{ backgroundImage: `url(${heroProduct})` }}
         >
           <div className="absolute inset-0 backdrop-blur-md bg-black/60" />
-          {/* Blue-to-teal gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/40 via-primary/20 to-secondary/30" />
         </div>
 
         {/* Content Overlay */}
