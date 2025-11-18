@@ -5,6 +5,9 @@ import DecorativeShapes from "./DecorativeShapes";
 import WaveDivider from "./WaveDivider";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import StatCard from "./StatCard";
+import benefit1 from "@/assets/benefit-1.png";
+import benefit2 from "@/assets/benefit-2.png";
+import benefit3 from "@/assets/benefit-3.png";
 
 const ValueProposition = () => {
   const { ref: headerRef, isVisible: headerVisible } = useIntersectionObserver();
@@ -33,17 +36,23 @@ const ValueProposition = () => {
     {
       icon: Shield,
       title: "No Needles. No Pain. No Hassle.",
-      description: "Traditional glucose testing requires finger pricks multiple times a day—painful, inconvenient, and easy to skip. HealthHue uses a painless adhesive patch that reads your glucose levels through your skin. Simply apply it and forget about it. No blood draws, no lancets, no daily discomfort."
+      description: "Traditional glucose testing requires finger pricks multiple times a day—painful, inconvenient, and easy to skip. HealthHue uses a painless adhesive patch that reads your glucose levels through your skin. Simply apply it and forget about it. No blood draws, no lancets, no daily discomfort.",
+      image: benefit1,
+      alt: "Mother applying HealthHue patch to child"
     },
     {
       icon: Zap,
       title: "Wear It. Live It. Monitor Effortlessly.",
-      description: "Unlike bulky monitoring devices that interrupt your day, HealthHue is discreet and invisible under clothing. Stick it on your arm or abdomen in the morning, and go about your classes, workouts, or social life. The visual color indicator shows your glucose status at a glance—no apps, no charging, no connectivity required."
+      description: "Unlike bulky monitoring devices that interrupt your day, HealthHue is discreet and invisible under clothing. Stick it on your arm or abdomen in the morning, and go about your classes, workouts, or social life. The visual color indicator shows your glucose status at a glance—no apps, no charging, no connectivity required.",
+      image: benefit2,
+      alt: "Woman jogging with HealthHue patch"
     },
     {
       icon: DollarSign,
       title: "Health Monitoring Without the Premium Price Tag",
-      description: "Continuous glucose monitors can cost hundreds of dollars monthly. Premium smartwatches with health tracking? Even more. HealthHue delivers accurate glucose detection at just $1 per patch—making daily monitoring accessible to students, young professionals, and anyone on a budget. Your health shouldn't come with a luxury price tag."
+      description: "Continuous glucose monitors can cost hundreds of dollars monthly. Premium smartwatches with health tracking? Even more. HealthHue delivers accurate glucose detection at just $1 per patch—making daily monitoring accessible to students, young professionals, and anyone on a budget. Your health shouldn't come with a luxury price tag.",
+      image: benefit3,
+      alt: "Grandmother showing HealthHue patches"
     }
   ];
 
@@ -116,10 +125,10 @@ const ValueProposition = () => {
                   }}
                 >
                   <CardHeader>
-                    <ImagePlaceholder 
-                      label={`BENEFIT-${index + 1}-IMAGE`} 
-                      aspectRatio="video" 
-                      className="mb-4"
+                    <img 
+                      src={benefit.image} 
+                      alt={benefit.alt}
+                      className="w-full aspect-[3/2] object-cover rounded-lg mb-4"
                     />
                     <div className="w-12 h-12 rounded-lg bg-gradient-hero flex items-center justify-center mb-4">
                       <benefit.icon className="w-6 h-6 text-primary-foreground" />
