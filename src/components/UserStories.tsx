@@ -78,28 +78,30 @@ const UserStories = () => {
                         ${cardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
                       `}
                     >
-                      <CardContent className="pt-8 pb-6">
-                        <div className="flex flex-col items-center text-center space-y-4">
+                      <CardContent className="p-8">
+                        <div className="flex flex-col md:flex-row gap-6 items-center md:items-start">
                           {/* Profile Photo */}
                           <img 
                             src={testimonial.image} 
                             alt={testimonial.name}
-                            className="w-24 h-24 rounded-lg object-cover"
+                            className="w-40 h-40 md:w-48 md:h-48 rounded-lg object-cover flex-shrink-0"
                           />
                           
-                          {/* Quote */}
-                          <div className="relative">
-                            <span className="text-4xl text-primary/20 absolute -top-2 -left-2">"</span>
-                            <p className="text-muted-foreground italic px-4">
-                              {testimonial.quote}
-                            </p>
-                            <span className="text-4xl text-primary/20 absolute -bottom-6 -right-2">"</span>
-                          </div>
-                          
-                          {/* Attribution */}
-                          <div className="pt-4 border-t border-border/50 w-full">
-                            <p className="font-bold text-foreground">{testimonial.name}</p>
-                            <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                          <div className="flex flex-col space-y-4 text-center md:text-left">
+                            {/* Quote */}
+                            <div className="relative">
+                              <span className="text-4xl text-primary/20 absolute -top-2 -left-2">"</span>
+                              <p className="text-muted-foreground italic px-4">
+                                {testimonial.quote}
+                              </p>
+                              <span className="text-4xl text-primary/20 absolute -bottom-6 -right-2">"</span>
+                            </div>
+                            
+                            {/* Attribution */}
+                            <div className="pt-4">
+                              <p className="font-bold text-foreground">{testimonial.name}</p>
+                              <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                            </div>
                           </div>
                         </div>
                       </CardContent>
