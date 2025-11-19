@@ -1,33 +1,32 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { User, ChevronLeft, ChevronRight } from "lucide-react";
-import ImagePlaceholder from "./ImagePlaceholder";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import DecorativeShapes from "./DecorativeShapes";
 import WaveDivider from "./WaveDivider";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import testimonial1 from "@/assets/testimonial-1.jpg";
+import testimonial2 from "@/assets/testimonial-2.jpg";
+import testimonial3 from "@/assets/testimonial-3.jpg";
 
 const testimonials = [
   {
     quote: "I've been diabetic for 15 years and those damn lancets were the bane of my existence. Pricking my fingers 4-5 times a day—my fingertips were constantly sore and calloused. When my son showed me HealthHue, I thought it was too good to be true. But it works! No more painful pricks, no more blood spots on my keyboard. Just slap on a patch and check the color. It's about time someone made glucose monitoring this simple.",
     name: "Denzel Loke, 43",
     role: "Software Intern",
-    avatarColor: "bg-primary",
     image: testimonial1
   },
   {
-    quote: "My dad was diagnosed with Type 2 at 45—I wasn't going to wait that long to take control. Traditional glucose monitors felt like overkill for someone without diabetes, but HealthHue lets me track patterns without the medical device hassle. I recommend it to all my clients who are serious about their metabolic health.",
-    name: "Marcus Johnson, 29",
-    role: "Fitness Trainer",
-    avatarColor: "bg-secondary"
+    quote: "As a widow of 3 years , I've had to learn to take care of my health alone. HealthHue has been my faithful companion through this journey. The weight of single-parenthood while managing my own declining health would almost be too heavy to bear without the convenience of HealthHue's afforable and easy-to-use glucose monitoring patch!",
+    name: "Giggs Loh, 38",
+    role: "Unemployed",
+    image: testimonial2
   },
   {
-    quote: "As a college student, I can't afford those fancy health watches, and honestly? I kept forgetting to do the finger-prick tests. HealthHue is literally set-it-and-forget-it. I check the color when I wake up and before bed—takes 2 seconds. Finally found something that actually fits my budget AND my chaotic schedule.",
-    name: "Emma Kowalski, 21",
-    role: "University Student",
-    avatarColor: "bg-accent"
+    quote: "In my 35 years of teaching at the university, I've seen countless medical fads come and go. After my second heart attack in 2019, my physician - a former student of mine from the '80s, actually quite bright despite his abysmal performance in my Differential Equations course - insisted I monitor my glucose levels. HealthHue is the only product that meets my standards. Simple. Reliable. No nonsense. Unlike the drivel my PhD candidates submit these days. I use it every morning before my 7am lecture, which I've taught since this university was founded. My late wife, God rest her soul, would have appreciated the elegance of the design. Now if only I could get my grandchildren to stop pestering me about 'retiring' and 'enjoying my twilight years.' I've got at least another 40 years of research grants to secure.",
+    name: "Lim Jun Fun, 23",
+    role: "Professar",
+    image: testimonial3
   }
 ];
 
@@ -82,19 +81,11 @@ const UserStories = () => {
                       <CardContent className="pt-8 pb-6">
                         <div className="flex flex-col items-center text-center space-y-4">
                           {/* Profile Photo */}
-                          {testimonial.image ? (
-                            <img 
-                              src={testimonial.image} 
-                              alt={testimonial.name}
-                              className="w-24 h-24 rounded-full object-cover"
-                            />
-                          ) : (
-                            <ImagePlaceholder 
-                              label={`TESTIMONIAL-PHOTO-${index + 1}`} 
-                              aspectRatio="square"
-                              className="w-24 h-24 rounded-full"
-                            />
-                          )}
+                          <img 
+                            src={testimonial.image} 
+                            alt={testimonial.name}
+                            className="w-24 h-24 rounded-lg object-cover"
+                          />
                           
                           {/* Quote */}
                           <div className="relative">
