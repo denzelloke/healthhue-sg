@@ -1,13 +1,18 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import DecorativeShapes from "./DecorativeShapes";
 import WaveDivider from "./WaveDivider";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import testimonial1 from "@/assets/testimonial-1.jpg";
 import testimonial2 from "@/assets/testimonial-2.jpg";
 import testimonial3 from "@/assets/testimonial-3.jpg";
+import testimonial4 from "@/assets/testimonial-4.jpg";
 
 const testimonials = [
   {
@@ -27,21 +32,18 @@ const testimonials = [
     name: "Lim Jun Fun, 23",
     role: "Professar",
     image: testimonial3
+  },
+  {
+    quote: "After 30 years in SAF - two tours in the Gulf, one in Afghanistan, lost my leg to an IED in '03 - you learn what's reliable. When my MO told me about the prediabetes last month, right after my 40th wedding anniversary, I knew I needed something solid. HealthHue reminds me of my old field pack: simple, tough, gets the job done. I use it every morning at 0600 hours, same timing since my NSF days in 1972. My four grown sons keep telling me to 'take it easy.' Paiseh lah, after surviving combat and earning my Long Service Medal, I'm not letting high blood sugar take me out.",
+    name: "2LT Liu Wen Yi, 27",
+    role: "NSF",
+    image: testimonial4
   }
 ];
 
 const UserStories = () => {
   const { ref: headerRef, isVisible: headerVisible } = useIntersectionObserver();
   const { ref: cardsRef, isVisible: cardsVisible } = useIntersectionObserver();
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
 
   return (
     <>
@@ -64,34 +66,37 @@ const UserStories = () => {
             </p>
           </div>
 
-          <div className="relative max-w-4xl mx-auto">
-            <div ref={cardsRef} className="overflow-hidden">
-              <div 
-                className="flex transition-transform duration-500 ease-out"
-                style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-              >
+          <div ref={cardsRef} className="relative max-w-7xl mx-auto">
+            <Carousel
+              opts={{
+                align: "center",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-2 md:-ml-4">
                 {testimonials.map((testimonial, index) => (
-                  <div key={index} className="w-full flex-shrink-0 px-4">
+                  <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-4/5 lg:basis-3/4">
                     <Card 
                       className={`
-                        bg-card/80 backdrop-blur-sm transition-all duration-300
+                        bg-card/80 backdrop-blur-sm transition-all duration-300 h-full
                         ${cardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
                       `}
                     >
-                      <CardContent className="p-8">
-                        <div className="flex flex-col md:flex-row gap-6 items-center md:items-start">
+                      <CardContent className="p-6 md:p-8 h-full">
+                        <div className="flex flex-col md:flex-row gap-6 items-center md:items-start h-full">
                           {/* Profile Photo */}
                           <img 
                             src={testimonial.image} 
                             alt={testimonial.name}
-                            className="w-40 h-40 md:w-48 md:h-48 rounded-lg object-cover flex-shrink-0"
+                            className="w-32 h-32 md:w-48 md:h-48 rounded-lg object-cover flex-shrink-0"
                           />
                           
-                          <div className="flex flex-col space-y-4 text-center md:text-left">
+                          <div className="flex flex-col space-y-4 text-center md:text-left flex-1">
                             {/* Quote */}
-                            <div className="relative">
+                            <div className="relative flex-1">
                               <span className="text-4xl text-primary/20 absolute -top-2 -left-2">"</span>
-                              <p className="text-muted-foreground italic px-4">
+                              <p className="text-muted-foreground italic px-4 text-sm md:text-base">
                                 {testimonial.quote}
                               </p>
                               <span className="text-4xl text-primary/20 absolute -bottom-6 -right-2">"</span>
@@ -106,41 +111,12 @@ const UserStories = () => {
                         </div>
                       </CardContent>
                     </Card>
-                  </div>
+                  </CarouselItem>
                 ))}
-              </div>
-            </div>
-
-            {/* Navigation Buttons */}
-            <Button
-              variant="outline"
-              size="icon"
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4"
-              onClick={prevSlide}
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4"
-              onClick={nextSlide}
-            >
-              <ChevronRight className="w-4 h-4" />
-            </Button>
-
-            {/* Dots Indicator */}
-            <div className="flex justify-center gap-2 mt-8">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  className={`w-2 h-2 rounded-full transition-all ${
-                    index === currentIndex ? "bg-primary w-8" : "bg-muted-foreground/30"
-                  }`}
-                  onClick={() => setCurrentIndex(index)}
-                />
-              ))}
-            </div>
+              </CarouselContent>
+              <CarouselPrevious className="hidden md:flex -left-12" />
+              <CarouselNext className="hidden md:flex -right-12" />
+            </Carousel>
           </div>
         </div>
       </section>
